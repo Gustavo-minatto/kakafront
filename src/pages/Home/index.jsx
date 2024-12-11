@@ -28,7 +28,7 @@ export function Home() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/casos/${cpf}`);
+      const response = await axios.get(`/casos/${cpf}`);
       setCasos(response.data);
     } catch (error) {
       if (error.response && error.response.status === 404) {
