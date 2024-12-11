@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Container, Logar, Title, InputWrapper, ButtonArea } from "./styles";
-import axios from "axios";
 import ProcessList from "../../components/ProcessList";
 import ReactInputMask from "react-input-mask";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 
 export function Home() {
@@ -28,7 +28,7 @@ export function Home() {
     }
 
     try {
-      const response = await axios.get(`/casos/${cpf}`);
+      const response = await api.get(`/casos/${cpf}`);
       setCasos(response.data);
     } catch (error) {
       if (error.response && error.response.status === 404) {
@@ -69,10 +69,9 @@ export function Home() {
             <ProcessList key={processo.id} processo={processo} />
           ))
         ) : (
-          <p></p>
+          <p>Acompanhe as etapas das nossas últimas ações:</p>
         )}
       </div>
-      <p>Acompanhe as etapas das nossas últimas ações</p>
     </Container>
   );
 }
