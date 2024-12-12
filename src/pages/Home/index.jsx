@@ -69,9 +69,11 @@ export function Home() {
             <ProcessList key={processo.id} processo={processo} />
           ))
         ) : (
-          <p>Acompanhe as etapas das nossas últimas ações:</p>
+          <p></p>
         )}
       </div>
+      <p>Acompanhe as etapas das nossas últimas ações:</p>
+
     </Container>
   );
 }
