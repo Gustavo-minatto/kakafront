@@ -14,7 +14,7 @@ export function Causas() {
   const [modalType, setModalType] = useState("");
   const [selectedCaso, setSelectedCaso] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [casoToDelete, setCasoToDelete] = useState(null); 
+  const [casoToDelete, setCasoToDelete] = useState(null);
 
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -87,6 +87,7 @@ export function Causas() {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Nome Cliente</th>
               <th>Cpf Cliente</th>
               <th>Decisão Favorável</th>
               <th>Protocolado nos órgãos</th>
@@ -103,6 +104,7 @@ export function Causas() {
               casos.map((caso) => (
                 <tr key={caso.id}>
                   <td>{caso.id}</td>
+                  <td>{caso.nome}</td>
                   <td>{caso.cpf}</td>
                   <td>{caso.decisao}</td>
                   <td>{caso.protocolado}</td>
@@ -146,9 +148,9 @@ export function Causas() {
       {isDeleteModalOpen && (
         <Modal
           isOpen={isDeleteModalOpen}
-          onClose={() => setIsDeleteModalOpen(false)} 
+          onClose={() => setIsDeleteModalOpen(false)}
           title="Confirmar Exclusão"
-          onConfirm={confirmDeleteCaso} 
+          onConfirm={confirmDeleteCaso}
           confirmText="Excluir"
         >
           <p>Tem certeza de que deseja excluir este caso?</p>

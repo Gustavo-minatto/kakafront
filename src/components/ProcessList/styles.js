@@ -31,7 +31,7 @@ export const ProgressBar = styled.div`
   overflow: hidden;
   position: relative;
   margin-top: 5px;
-  height: 30px;
+  height: 40px;
 `;
 
 export const Progress = styled.div`
@@ -41,15 +41,17 @@ export const Progress = styled.div`
   width: ${(props) => props.width || "0%"};
   position: relative;
   display: flex;
-  align-items: center; /* Centraliza o conteúdo verticalmente */
-  justify-content: flex-end; /* Alinha o texto ao final da barra */
-  padding-right: 10px; /* Espaço para o texto dentro da barra */
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
 `;
 
 export const Percent = styled.span`
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
-  z-index: 1;
-  position: relative;
+  position: absolute; 
+  right: 5px;
+  top: 50%; 
+  transform: translateY(-50%);
 `;

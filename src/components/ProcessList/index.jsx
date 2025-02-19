@@ -6,16 +6,25 @@ const ProcessList = ({ processo }) => {
     { nome: "Decisão Favorável", progresso: processo.decisao },
     { nome: "Protocolado nos órgãos", progresso: processo.protocolado },
     { nome: "Baixa SPC", progresso: processo.spc },
-    { nome: "Baixa Boa Vista", progresso: processo.boaVista },
+    { nome: "Baixa Boa Vista", progresso: processo.boa },
     { nome: "Baixa Serasa", progresso: processo.serasa },
     { nome: "Baixa CENPROT", progresso: processo.cenprot },
     { nome: "Baixa QUOD", progresso: processo.quod },
   ];
 
+  const getCurrentDate = () => {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
+
   return (
     <ProcessContainer>
-      <Title>Data do Processo: {processo.data}</Title>
-      <Subtitle>ID: {processo.id}</Subtitle>
+      <Title>Data do Processo: {getCurrentDate()}</Title>
+      <Subtitle>Nome: {processo.nome}</Subtitle>
       {etapas.map((etapa, index) => (
         <Etapa key={index}>
           <EtapaLabel>{etapa.nome}</EtapaLabel>

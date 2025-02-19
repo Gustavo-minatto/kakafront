@@ -2,9 +2,11 @@
 import { Modal } from '../Modal';
 import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
+import ReactInputMask from 'react-input-mask';
 
 export function ModalAdicionarCausa({ isOpen, onClose, causa }) {
   const [cpf, setCpf] = useState("");
+  const [nome, setNome] = useState("");
   const [decisao, setDecisao] = useState("");
   const [protocolado, setProtocolado] = useState("");
   const [spc, setSpc] = useState("");
@@ -16,6 +18,7 @@ export function ModalAdicionarCausa({ isOpen, onClose, causa }) {
   useEffect(() => {
     if (causa) {
       setCpf(causa.cpf);
+      setNome(causa.nome)
       setDecisao(causa.decisao);
       setProtocolado(causa.protocolado);
       setSpc(causa.spc);
@@ -27,7 +30,7 @@ export function ModalAdicionarCausa({ isOpen, onClose, causa }) {
   }, [causa]);
 
   async function handleAddCausa() {
-    if (!cpf || !decisao || !protocolado || !spc || !boa || !serasa || !cenprot || !quod) {
+    if (!cpf || !nome || !decisao || !protocolado || !spc || !boa || !serasa || !cenprot || !quod) {
       return alert("Preencha todos os campos");
     }
 
@@ -35,6 +38,7 @@ export function ModalAdicionarCausa({ isOpen, onClose, causa }) {
       if (causa) {
         await api.put(`/casos/${causa.id}`, {
           cpf,
+          nome,
           decisao,
           protocolado,
           spc,
@@ -47,6 +51,7 @@ export function ModalAdicionarCausa({ isOpen, onClose, causa }) {
       } else {
         await api.post("casos", {
           cpf,
+          nome,
           decisao,
           protocolado,
           spc,
@@ -67,14 +72,22 @@ export function ModalAdicionarCausa({ isOpen, onClose, causa }) {
     <Modal isOpen={isOpen} onClose={onClose} title={causa ? "Editar Causa" : "Adicionar Causa"} onConfirm={handleAddCausa}>
       <form>
         <label>CPF do Cliente</label>
-        <input
-          type="text"
-          name="cpf"
+        <ReactInputMask
+          mask="999.999.999-99"
           value={cpf}
           onChange={e => setCpf(e.target.value)}
-          placeholder="Ex: 123.456.789-00"
+          name="cpf"
+          placeholder="Ex: 123.456.789-10"
         />
 
+        <label>Nome do Cliente</label>
+        <input
+          type='text'
+          name="nome"
+          value={nome}
+          onChange={e => setNome(e.target.value)}
+          placeholder="Ex: José da Silva"
+        />
 
         <label>Decisão Favoravel</label>
         <input

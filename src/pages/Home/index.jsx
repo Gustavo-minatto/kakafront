@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 
-
 export function Home() {
   const [cpf, setCpf] = useState("");
   const [casos, setCasos] = useState([]);
@@ -43,7 +42,6 @@ export function Home() {
   return (
     <Container>
       <Logar onClick={handleLoginClick}>Entrar</Logar>
-
 
       <Title>Consulte seus processos</Title>
 

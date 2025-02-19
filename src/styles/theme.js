@@ -4,7 +4,7 @@ export default {
 
     WHITE: "#FFFFFF",
 
-    GREEN: "#4EE6A1",
+    GREEN: "#2B58DE",
     GOLDEN: "#FBD17F",
     GRAY: "#A1A6AC",  
     GRAY_100: "#D9D9D9"
